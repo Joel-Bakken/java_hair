@@ -1,15 +1,15 @@
-<!-- clients.vtl -->
-<h1>Clients List</h1>
+<!--clients.vtl-->
+<h1>client list!</h1>
 
 #if ($clients)
-  <ul class="list-group">
+  <ul>
     #foreach ($client in $clients)
-      <li class="list-group-item"><a href="/stylists/$client.getstylistId()/clients/$client.getId()">$client.getName()</a></li>
+      <li><a href="/clients/$client.getId()">$client.getDetail()</a></li>
     #end
   </ul>
 #else
-  <h1>No Clients! Quick, find some!</h1>
+  <p>No clients!</p>
 #end
 
-<a href="/new-client" class="btn btn-default" role="button">Add a new client</a>
-<!-- clients.vtl -->
+<a href="/clients/new">Add New client</a>
+<!--clients.vtl-->

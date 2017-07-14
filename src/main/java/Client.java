@@ -18,16 +18,41 @@ public class Client {
     return name;
   }
 
-  public String getDetails() {
+  public String getdetails() {
     return details;
   }
+
+  public static List<Client> all() {
+     String sql = "SELECT id, details, stylistId FROM clients";
+     try(Connection con = DB.sql2o.open()) {
+       return con.createQuery(sql).executeAndFetch(Client.class);
+     }
+   }
 
   public int getId()  {
     return id;
   }
 
-  public int getStylistId() {
-    return stylistId;
+  public static Client find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients where id=:id";
+      Client client = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+      return client;
+    }
+  }
+
+  @Override
+  public boolean equals(Object otherClient){
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      return this.getdetails().equals(newClient.getdetails()) &&
+             this.getId() == newClient.getId() &&
+             this.getStylistId() == newClient.getStylistId();
+    }
   }
 
   public void save() {
@@ -41,33 +66,8 @@ public class Client {
     }
   }
 
-  @Override
-  public boolean equals(Object otherClient){
-    if (!(otherClient instanceof Client)) {
-      return false;
-    } else {
-      Client newClient = (Client) otherClient;
-      return this.getDetails().equals(newClient.getDetails()) &&
-             this.getId() == newClient.getId() &&
-             this.getName().equals(newClient.getName());
-    }
-  }
-
-  public static List<Client> all() {
-    String sql = "SELECT id, StylistId, name, details FROM clients";
-    try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(Client.class);
-    }
-  }
-
-  public static Client find(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM clients where id=:id";
-      Client client = con.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Client.class);
-      return client;
-    }
+  public int getStylistId() {
+    return stylistId;
   }
 
   public void update(String details) {

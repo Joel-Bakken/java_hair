@@ -1,18 +1,47 @@
-<!-- index.vtl -->
-<h1>Welcome To Hair Salon</h1>
+<!--index.vtl-->
+<h1>Hair Salon Control Panel</h1>
 
-#if($stlyists)
-  <p>Click on a Stylist to see their clients:</p>
-  <ul class="list-group">
+<h2> All Stylists: </h2>
+
+#if($stylists)
+  <p>Click on a stylist to see its clients:</p>
+  <ul>
     #foreach ($stylist in $stylists)
-      <li class="list-group-item"><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+      <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a><form action="/stylists/$stylist.getId()/delete" method="post">
+        <button type="submit" class="btn btn-danger" id="delete-stylist">Delete Stylist</button>
+      </form></li>
     #end
   </ul>
-
 #else
-  <p>There are no stylists with clients!</p>
+  <p>There are no stylists yet! Hire Some!</p>
 #end
-  <a href="/new-client" class="btn btn-default" role="button">Add a new client</a>
-  <a href="/new-stylist" class="btn btn-default" role="button">Add a new stylist</a>
 
-<!-- index.vtl -->
+<h2>New Stylist:</h2>
+
+<form action="/stylists" method="post">
+  <label for="name">Stylist name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-success">Add Stylist</button>
+</form>
+
+<h2>New client:</h2>
+
+<form action="/clients" method="post">
+  <label for="stylistId">Select a Stylist</label>
+<select id='stylistId' name='stylistId' type='text'>
+  #foreach($stylist in $stylists)
+    <option value="$stylist.getId()">$stylist.getName()</option>
+  #end
+</select>
+
+  <div class="form-group">
+    <label for="client-name">name</label>
+    <input id="client-name" name="client-name" type="text" class="form-control">
+
+    <label for="detail">detail</label>
+    <textarea id="detail" name="detail" type="text" class="form-control"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success">Add client</button>
+</form>
+<!--index.vtl-->

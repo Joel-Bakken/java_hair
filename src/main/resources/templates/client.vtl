@@ -1,8 +1,22 @@
-<!-- client.vtl -->
-<h2>$stylist.getName()'s client</h2>
-<div class="panel panel-default">
-  <div class="panel-heading"><h3>$client.getName()</h3></div>
-  <div class="panel-body">$client.getDetails()</div>
-</div>
+<!--client.vtl-->
+<h1>$client.getDetail()</h1>
+<h2>Completed?:  $client.isCompleted()</h2>
+<h2> Belongs to: $stylist.getName() list.</h2>
 
-<!-- hike.vtl -->
+<h2>Edit client:</h2>
+
+<form action="/stylists/$client.getStylistId()/clients/$client.getId()" method="post">
+  <label for="client-name">client-name</label>
+  <input id="client-name" name="client-name" type="text">
+  <label for="detail">Detail</label>
+  <input id="detail" name="detail" type="text">
+
+  <button type="submit" class="btn btn-info">Update Client</button>
+</form>
+
+<form action="/stylists/$client.getStylistId()/clients/$client.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-client">Delete Client</button>
+</form>
+
+<a href="/stylists/$stylist.getId()">Return to $stylist.getName()</a>
+<!--client.vtl-->

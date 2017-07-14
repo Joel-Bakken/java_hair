@@ -1,8 +1,16 @@
-<!-- stylist.vtl -->
-<h2>$stylist.getName()</h2>
-<ul class="list-group">
+<!--stylist.vtl-->
+<h1>$stylist.getName() clients:</h1>
+
+<ul>
   #foreach($client in $stylist.getClients())
-  <li class="list-group-item"><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
+   <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getDetail()</a></li>
   #end
 </ul>
-<!-- stylist.vtl -->
+
+<form action="/stylists/$stylist.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-stylist">Delete Stylist</button>
+</form>
+
+<a href="/stylists/$stylist.getId()/clients/new">Add a new client</a>
+<a href="/stylists">All stylists</a>
+<!--stylist.vtl-->
