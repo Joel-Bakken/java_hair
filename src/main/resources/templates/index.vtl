@@ -1,0 +1,16 @@
+<!-- index.vtl -->
+<h1>Welcome To Hair Salon</h1>
+
+#if($stlyists)
+  <p>Click on a Stylist to see their clients:</p>
+  <ul class="list-group">
+    #foreach ($stylist in $stylists)
+      <li class="list-group-item"><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+    #end
+  </ul>
+
+#else
+  <p>There are no stylists with clients!</p>
+#end
+  <a href="/new-client" class="btn btn-default" role="button">Add a new client</a>
+<!-- index.vtl -->
