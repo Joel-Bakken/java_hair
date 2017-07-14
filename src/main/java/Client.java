@@ -40,7 +40,7 @@ public class Client {
         .getKey();
     }
   }
-  
+
   @Override
   public boolean equals(Object otherClient){
     if (!(otherClient instanceof Client)) {
@@ -70,4 +70,13 @@ public class Client {
     }
   }
 
+  public void update(String description) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE clients SET details = :details WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("details", details)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }

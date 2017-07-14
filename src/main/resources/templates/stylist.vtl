@@ -1,0 +1,8 @@
+<!-- stylist.vtl -->
+<h2>$stylist.getName()</h2>
+<ul class="list-group">
+  #foreach($client in $stylist.getClients())
+  <li class="list-group-item"><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
+  #end
+</ul>
+<!-- stylist.vtl -->
