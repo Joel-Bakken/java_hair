@@ -49,7 +49,8 @@ public class Client {
       return false;
     } else {
       Client newClient = (Client) otherClient;
-      return this.getdetails().equals(newClient.getdetails()) &&
+      return this.getName().equals(newClient.getName()) &&
+             this.getdetails().equals(newClient.getdetails()) &&
              this.getId() == newClient.getId() &&
              this.getStylistId() == newClient.getStylistId();
     }
@@ -59,6 +60,7 @@ public class Client {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients(details, stylistId) VALUES (:details, :stylistId);";
       this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
         .addParameter("details", this.details)
         .addParameter("stylistId", this.stylistId)
         .executeUpdate()

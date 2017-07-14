@@ -33,11 +33,11 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
       String name = request.queryParams("name");
-      String detail = request.queryParams("detail");
-      Client newClient = new Client(name, detail, stylist.getId());
+      String details = request.queryParams("details");
+      Client newClient = new Client(name, details, stylist.getId());
       newClient.save();
       model.put("stylist", stylist);
-      model.put("template", "templates/stylist-clients-success.vtl");
+      model.put("template", "templates/stylist-client-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

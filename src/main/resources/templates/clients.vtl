@@ -4,12 +4,12 @@
 #if ($clients)
   <ul>
     #foreach ($client in $clients)
-      <li><a href="/clients/$client.getId()">$client.getDetail()</a></li>
+      <li><a href="/clients/$client.getId()">$client.getDetails()</a></li>
     #end
   </ul>
 #else
   <p>No clients!</p>
 #end
 
-<a href="/clients/new">Add New client</a>
+<a href="/">Add New client</a>
 <!--clients.vtl-->
