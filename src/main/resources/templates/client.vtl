@@ -1,5 +1,5 @@
 <!--client.vtl-->
-<h1>$client.getDetail()</h1>
+<h1>$client.getDetails()</h1>
 <h2> Belongs to: $stylist.getName() list.</h2>
 
 <h2>Edit client:</h2>
@@ -7,7 +7,7 @@
 <form action="/stylists/$client.getStylistId()/clients/$client.getId()" method="post">
   <label for="client-name">client-name</label>
   <input id="client-name" name="client-name" type="text">
-  <label for="details">Detail</label>
+  <label for="details">Details</label>
   <textarea id="details" name="details" type="text"></textarea>
 
   <button type="submit" class="btn btn-info">Update Client</button>
