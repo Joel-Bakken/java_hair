@@ -20,12 +20,6 @@ public class ClientTest {
   }
 
   @Test
-  public void isCompleted_isFalseAfterInstantiation_false() {
-    Client testClient = new Client("Joel", 1);
-    assertEquals(false, testClient.isCompleted());
-  }
-
-  @Test
   public void all_returnsAllInstancesOfClient_true() {
     Client firstClient = new Client("Joel", 1);
     firstClient.save();
