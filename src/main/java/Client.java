@@ -18,7 +18,7 @@ public class Client {
     return name;
   }
 
-  public String getdetails() {
+  public String getDetails() {
     return details;
   }
 
@@ -50,7 +50,7 @@ public class Client {
     } else {
       Client newClient = (Client) otherClient;
       return this.getName().equals(newClient.getName()) &&
-             this.getdetails().equals(newClient.getdetails()) &&
+             this.getDetails().equals(newClient.getDetails()) &&
              this.getId() == newClient.getId() &&
              this.getStylistId() == newClient.getStylistId();
     }
@@ -58,7 +58,7 @@ public class Client {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(name, details, stylistId) VALUES (: name, :details, :stylistId);";
+      String sql = "INSERT INTO clients(name, details, stylistId) VALUES (:name, :details, :stylistId);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("details", this.details)
@@ -74,10 +74,12 @@ public class Client {
 
   public void update(String details) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE clients SET details = :details WHERE id = :id";
+      String sql = "UPDATE clients SET details = :name, :details, stylistId WHERE id = :id";
       con.createQuery(sql)
-        .addParameter("details", details)
-        .addParameter("id", id)
+        .addParameter("name", this.name)
+        .addParameter("details", this.details)
+        .addParameter("stylistId", this.stylistId)
+        .addParameter("id", this.id)
         .executeUpdate();
     }
   }
