@@ -2,14 +2,14 @@
 <h1>$stylist.getName() clients:</h1>
 
 <ul>
-  #foreach($client in $stylist.getClients())
+  #foreach($client in $clients)
    <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
   #end
 </ul>
 
 <form action="/stylists/$stylist.getId()/delete" method="post">
   <button type="submit" class="btn btn-danger" id="delete-stylist">Delete Stylist</button>
-<h4>Warning! If you delete this stylist you will need to re-add their clients to another stylist's client list!</h4> 
+<h4>Warning! If you delete this stylist you will need to re-add their clients to another stylist's client list!</h4>
 </form>
 
 <!--stylist.vtl-->
