@@ -6,6 +6,12 @@
    <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
   #end
 </ul>
+<form action="/stylists/$stylist.getId()" method="post">
+  <label for="stylist-name">Stylist Name</label>
+  <input id="stylist-name" name="stylist-name" type="text">
+
+  <button type="submit" class="btn btn-info" id="update-stylist">Update Stylist</button>
+</form>
 
 <form action="/stylists/$stylist.getId()/delete" method="post">
   <button type="submit" class="btn btn-danger" id="delete-stylist">Delete Stylist</button>
