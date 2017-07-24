@@ -84,11 +84,11 @@ public class ClientTest {
   }
 
   @Test
-  public void update_updatesClientdetails_true() {
+  public void update_updatesClientName_true() {
     Client testClient = new Client("Joel", "blah blah", 1);
     testClient.save();
-    testClient.update("Tammy");
-    assertEquals("Tammy", Client.find(testClient.getId()).getDetails());
+    testClient.update("Tammy", "blah blah");
+    assertEquals("Tammy", Client.find(testClient.getId()).getName());
   }
 
   @Test
